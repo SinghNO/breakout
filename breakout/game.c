@@ -1,4 +1,6 @@
 #include"main.h"
+
+//function to initialize the game.
 void initgame(game *g) {
 	g->exit = 0;
 	g->score = 0;
@@ -10,6 +12,8 @@ void initgame(game *g) {
 	initslider(g);
 	screenupdate(g);
 }
+
+//function to start the game.
 void startgame(game *g) {
 	char c;
 	while(1) {	
@@ -25,6 +29,8 @@ void startgame(game *g) {
 	screenupdate(g);
 	}
 }
+
+//function to update the screen.
 void screenupdate(game *g) {
 	clear();
 	printball(g);

@@ -28,6 +28,6 @@ void moveball(game *g) {
 			if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 10)
 				t->direcy *= -1;
 		}
-		g->b->x = x + g->b->direcx;
-		g->b->y = y + g->b->direcy;
+		g->b->x += g->b->direcx;
+		g->b->y += g->b->direcy;
 }		

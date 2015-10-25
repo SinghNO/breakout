@@ -31,7 +31,7 @@ void screenupdate(game *g) {
 	printslider(g);
 	printbrick(g);
 	refresh();
-	//napms(100 / g-> b ->speed);
+	napms(200 / g-> b ->speed);
 }
 	
 	

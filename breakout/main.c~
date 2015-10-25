@@ -4,7 +4,7 @@ int main() {
 	noecho();
 	curs_set(FALSE);
 	game g; 
-	//nodelay(stdscr, TRUE);
+	nodelay(stdscr, TRUE);
 	initgame(&g);
 	getch();
 	startgame(&g);

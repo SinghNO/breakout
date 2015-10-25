@@ -1,4 +1,6 @@
 #include"main.h"
+
+//function to initailize the ball.
 void initball(game *g) {
 	g->b = (ball*)malloc(sizeof(ball));
 	ball *c;
@@ -11,9 +13,13 @@ void initball(game *g) {
 	c-> direcx = 1;
 	c-> direcy = 1;
 	}
+
+//function to print the ball.
 void printball(game *g) {
 	mvprintw(g->b->y, g->b->x, "#");
 }
+
+//function to move the ball.
 void moveball(game *g) {
 		ball *t = g->b;
 		if((t->x == g->column && t->direcx == 1) || (t->x == 0 && t->direcx == -1)) {

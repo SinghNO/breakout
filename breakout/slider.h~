@@ -3,5 +3,5 @@ typedef struct slider {
 	}slider;
 void initslider(game *g);
 void printslider(game *g);
-void moveslider(game *g);
+void moveslider(game *g, char ch);
 

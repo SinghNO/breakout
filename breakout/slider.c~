@@ -9,7 +9,12 @@ void printslider(game *g) {
 	mvprintw(g->s->y, g->s->x, "**********");
 	}
 void moveslider(game *g ,char ch) {
-	
-	
+	  switch(ch) {
+		case 'x': g->s->x++;
+			break;
+		case 'z': g->s->x--;
+			break;
+		default:break;
+	}
 }
 
