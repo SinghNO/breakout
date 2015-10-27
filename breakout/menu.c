@@ -1,17 +1,14 @@
 #include "main.h"
- #include <locale.h>
-extern int print_menu (int sty, int x, int alts, int width,char title[], char entries[][100], int start);
-game new;
-int main() {
+void initmenu(game *new) {
 	int menu_ret = 1, menu_ret2 = 1;
 	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"QUIT"}}; /* hold the entries. */
 	char alts2[][100] = {{"LEVEL 1"},{"LEVEL 2"},{"LEVEL 3"},{"Return"},};
 	setlocale (LC_CTYPE, "");
-	initscr(); /* Most of the below initialisers are */
-	noecho(); /* not necessary for this example. */
-	keypad (stdscr, TRUE); /* It's just a template for a */
-	meta (stdscr, TRUE); /* hypothetical program that might */
-	nodelay (stdscr, FALSE); /* need them. */
+	initscr(); 
+	noecho(); 
+	keypad (stdscr, TRUE); 
+	meta (stdscr, TRUE); 
+	nodelay (stdscr, FALSE); 
 	notimeout (stdscr, TRUE);
 	raw();
 	curs_set (0);
@@ -21,10 +18,9 @@ int main() {
 	do { /* menu_ret is sent as the start value, to make the last entry */
 		/* highlighted when you return to the main menu. */
 		menu_ret = print_menu (2, 5, 3, 15,"MAIN MENU", alts, menu_ret);
-		if (menu_ret == 1) { 
-			clear();
-			initgame(&new);
-			startgame(&new);				
+		if (menu_ret == 3) { 
+			endwin();
+			exit(0);		
 		}
 		else if (menu_ret == 2) { /* menu will show up without erasing */
 			do  {/* the main menu. */
@@ -34,9 +30,7 @@ int main() {
 	}
 	erase(); /* When you return from the SELECT SLOT menu, */
 	} /* everything will be erased and MAIN MENU will be */
-	while (menu_ret != 3); /* reprinted. */
-	endwin();
-	return 0;
+	while (menu_ret != 1); /* reprinted. */
 }
 int print_menu (int sty, int x, int alts, int width,char title[], char entries[][100], int start) {
 /* "i" will be used for printing out a character several times

@@ -38,11 +38,45 @@ void printbrick(game *g) {
 			}		
        
 		}
-	}
-	start_color();
-	init_pair(1,COLOR_WHITE, COLOR_BLACK);
-	bkgd(COLOR_PAIR(1));
+	
+}
 }	
 //void deletebrick(game *g) {
-//return;
 //}
+int brickindex(game *g) {
+	int next_xcor;
+	int next_ycor;
+	int xcor;
+	int ycor, k = 0;
+	next_xcor = g->b->x + g->b->direcx;
+	next_ycor = g->b->y + g->b->direcy;
+	while(k < g->count_bricks) {
+		xcor = g->br[k].x;
+		ycor = g->br[k].y;
+		if(next_xcor >= xcor&& next_xcor <= xcor + 14) {
+			if(next_ycor >= ycor && next_ycor <= ycor + 3) {
+				destroybrick(g, k);
+				return 1;
+				break;
+			}
+		}
+		k++;
+	}
+	return 0;
+}
+
+void destroybrick(game *g, int k) {
+	//mvaddstr(0, 0,"destroybrick called");
+	//refresh(); 
+	//napms(5000);
+	k++;
+	while(k < g->count_bricks) {
+	//mvaddstr(38, 64, "while loop called");
+	//refresh();
+	//napms(5000);
+		g->br[k - 1] = g->br[k];
+		k++;
+	}
+	g->count_bricks--;
+}	
+	

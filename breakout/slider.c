@@ -1,5 +1,4 @@
 #include"main.h"
-#define DELAY 30000
 
 //function to initialize the slider.
 void initslider(game *g) {

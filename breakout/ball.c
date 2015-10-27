@@ -1,6 +1,6 @@
 #include"main.h"
 
-//function to initailize the ball.
+// function to initailize the ball.
 void initball(game *g) {
 	g->b = (ball*)malloc(sizeof(ball));
 	ball *c;
@@ -14,7 +14,7 @@ void initball(game *g) {
 	c-> direcy = 1;
 	}
 
-//function to print the ball.
+// function to print the ball.
 
 void printball(game *g) {
 	mvprintw(g->b->y, g->b->x, "#");
@@ -23,23 +23,26 @@ void printball(game *g) {
 //function to move the ball.
 
 void moveball(game *g) {
+		int k; 
 		ball *t = g->b;
 		if((t->x == g->column && t->direcx == 1) || (t->x == 0 && t->direcx == -1)) {
-			t->direcx *= -1;
+			t->direcx *= -2;
 		}
 		if((t->y == g->row && t->direcy == 1) || (t->y == 0 && t->direcy == -1)) {
-			t->direcy *= -1;
+			t->direcy *= -2;
 		}
 		if(t->y == g->s->y - 1 && t->direcy == 1) {
 			if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 10)
-				t->direcy *= -1;
+				t->direcy *= -2;
 			if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 10)
-				t->direcy *= -1;
+				t->direcy *= -2;
 		}
+		k = brickindex(g);
+		if(k)
+			t->direcy *= -1;
 		g->b->x += g->b->direcx;
-		g->b->y += g->b->direcy;
-	
+		g->b->y += g->b->direcy;	
 }		
-	
+
 
 

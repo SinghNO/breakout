@@ -5,4 +5,5 @@ typedef struct ball {
 void initball(game *g);
 void printball(game *g);
 void moveball(game *g);
+int getbrickindex(game *g);
 
