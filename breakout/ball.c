@@ -15,11 +15,13 @@ void initball(game *g) {
 	}
 
 //function to print the ball.
+
 void printball(game *g) {
 	mvprintw(g->b->y, g->b->x, "#");
 }
 
 //function to move the ball.
+
 void moveball(game *g) {
 		ball *t = g->b;
 		if((t->x == g->column && t->direcx == 1) || (t->x == 0 && t->direcx == -1)) {
@@ -36,4 +38,8 @@ void moveball(game *g) {
 		}
 		g->b->x += g->b->direcx;
 		g->b->y += g->b->direcy;
+	
 }		
+	
+
+

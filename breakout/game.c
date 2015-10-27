@@ -15,7 +15,8 @@ void initgame(game *g) {
 
 //function to start the game.
 void startgame(game *g) {
-	char c;
+	char c, prevc = ERR;
+//	nodelay(stdscr, TRUE);
 	while(1) {	
 	c = getch();
 	switch(c) {
@@ -23,8 +24,14 @@ void startgame(game *g) {
 			break;
 		case 'z':moveslider(g, 'z');
 			break;
+		case 'p':g->exit = 1;
+			break;
 		default:break;
 	}
+	nodelay(stdscr, TRUE);
+	flushinp();
+	if(g->exit)
+		break;
 	moveball(g);
 	screenupdate(g);
 	}
@@ -37,7 +44,7 @@ void screenupdate(game *g) {
 	printslider(g);
 	printbrick(g);
 	refresh();
-	napms(200 / g-> b ->speed);
+	napms(100 / g->b->speed);
 }
 	
 	

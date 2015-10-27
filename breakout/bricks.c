@@ -24,20 +24,25 @@ void printbrick(game *g) {
 	int i;
 	for(i = 0; i < g->count_bricks; i++) {
 		 if(g->br[i].life) {
-		if(g->br[i].width == 15) {
-                mvaddstr(g->br[i].y, g->br[i].x, "- - - - - - - -");
-                mvaddstr(g->br[i].y + 1, g->br[i].x, "-             -");
-                mvaddstr(g->br[i].y + 2, g->br[i].x, "-             -");
-                mvaddstr(g->br[i].y + 3, g->br[i].x, "- - - - - - - -");
-        }
-	if(g->br[i].width == 9) {
-                mvaddstr(g->br[i].y, g->br[i].x, "- - - - -");
-                mvaddstr(g->br[i].y + 1, g->br[i].x, "-       -");
-                mvaddstr(g->br[i].y + 2, g->br[i].x, "-       -");
-                mvaddstr(g->br[i].y + 3, g->br[i].x, "- - - - -");
-	
-	}
-	}
+			if(g->br[i].width == 15) {
+                		mvaddstr(g->br[i].y, g->br[i].x, "- - - - - - - -");
+                		mvaddstr(g->br[i].y + 1, g->br[i].x, "-             -");
+                		mvaddstr(g->br[i].y + 2, g->br[i].x, "-             -");
+                		mvaddstr(g->br[i].y + 3, g->br[i].x, "- - - - - - - -");
+        		if(g->br[i].width == 9) {
+                		mvaddstr(g->br[i].y, g->br[i].x, "- - - - -");
+                		mvaddstr(g->br[i].y + 1, g->br[i].x, "-       -");
+                		mvaddstr(g->br[i].y + 2, g->br[i].x, "-       -");
+                		mvaddstr(g->br[i].y + 3, g->br[i].x, "- - - - -");
+			}
+			}		
        
+		}
 	}
-}
+	start_color();
+	init_pair(1,COLOR_WHITE, COLOR_BLACK);
+	bkgd(COLOR_PAIR(1));
+}	
+//void deletebrick(game *g) {
+//return;
+//}

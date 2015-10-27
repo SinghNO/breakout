@@ -1,4 +1,5 @@
 #include"main.h"
+#define DELAY 30000
 
 //function to initialize the slider.
 void initslider(game *g) {
@@ -16,10 +17,14 @@ void printslider(game *g) {
 //function to move the slider.
 void moveslider(game *g ,char ch) {
 	  switch(ch) {
-		case 'x': g->s->x++;
+		case 'x':
+			 g->s->x++;
+			break; 
+			
+		case 'z':
+			g->s->x--;
 			break;
-		case 'z': g->s->x--;
-			break;
+
 		default:break;
 	}
 }

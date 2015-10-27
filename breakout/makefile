@@ -1,7 +1,7 @@
 breakout: main.o game.o ball.o bricks.o slider.o
-	cc -Wall main.o game.o ball.o bricks.o slider.o -o breakout -lncurses
+	cc -Wall main.o game.o ball.o bricks.o slider.o -o breakout -lncurses -lmenu
 main.o: main.c main.h
-	cc -c -Wall main.c -lncurses
+	cc -c -Wall main.c -lncurses -lmenu
 game.o: game.c main.h
 	cc -c -Wall game.c -lncurses
 ball.o: ball.c main.h
