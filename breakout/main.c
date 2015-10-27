@@ -7,11 +7,11 @@ int main() {
 	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"QUIT"}}; /* hold the entries. */
 	char alts2[][100] = {{"LEVEL 1"},{"LEVEL 2"},{"LEVEL 3"},{"Return"},};
 	setlocale (LC_CTYPE, "");
-	initscr(); /* Most of the below initialisers are */
-	noecho(); /* not necessary for this example. */
-	keypad (stdscr, TRUE); /* It's just a template for a */
-	meta (stdscr, TRUE); /* hypothetical program that might */
-	nodelay (stdscr, FALSE); /* need them. */
+	initscr(); 
+	noecho(); 
+	keypad (stdscr, TRUE); 
+	meta (stdscr, TRUE); 
+	nodelay (stdscr, FALSE); 
 	notimeout (stdscr, TRUE);
 	raw();
 	curs_set (0);
