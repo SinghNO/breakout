@@ -2,7 +2,7 @@
 void initmenu(game *new) {
 	int menu_ret = 1, menu_ret2 = 1;
 	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"QUIT"}}; /* hold the entries. */
-	char alts2[][100] = {{"LEVEL 1"},{"LEVEL 2"},{"LEVEL 3"},{"Return"},};
+	char alts2[][100] = {{"LEVEL 1"},{"LEVEL 2"},{"LEVEL 3"},{"RETURN BACK TO MAIN MENU"},};
 	setlocale (LC_CTYPE, "");
 	initscr(); 
 	noecho(); 
@@ -12,23 +12,38 @@ void initmenu(game *new) {
 	notimeout (stdscr, TRUE);
 	raw();
 	curs_set (0);
-	mvprintw(15, 15, " PRESS p TO RETURN TO THE MENU AGAIN. ");
-	mvprintw(16, 15, "START  THE GAME AS SOON AS POSSIBLE ,HINT PRESS x AT BEGINNING AS GAME STARTS");
+	mvprintw(23, 36, "INSTRUCTIONS");
+	mvprintw(24, 36, "press x to move the slider towards right.");
+	mvprintw(25, 36, "press z to move the slider towards left.");
+	mvprintw(26, 36, "press p to exit the game");
+	mvprintw(27, 36, "ENJOY");
 	refresh();
 	do { /* menu_ret is sent as the start value, to make the last entry */
 		/* highlighted when you return to the main menu. */
-		menu_ret = print_menu (2, 5, 3, 15,"MAIN MENU", alts, menu_ret);
+		menu_ret = print_menu (2, 5, 3, 15," WELCOME TO BREAKOUT MAIN MENU", alts, menu_ret);
 		if (menu_ret == 3) { 
 			endwin();
 			exit(0);		
 		}
 		else if (menu_ret == 2) { /* menu will show up without erasing */
 			do  {/* the main menu. */
-				menu_ret2 = print_menu (6, 22, 4, 15,"SELECT LEVEL", alts2, 1);
+				menu_ret2 = print_menu (6, 22, 4, 15," PLEASE SELECT THE LEVEL", alts2, 1);
 		}	
 		while (menu_ret2 != 4);
+		mvprintw(23, 36, "INSTRUCTIONS");
+		mvprintw(24, 36, "press x to move the slider towards right.");
+		mvprintw(25, 36, "press z to move the slider towards left.");
+		mvprintw(26, 36, "press p to exit the game");
+		mvprintw(27, 36, "ENJOY");
+		refresh();
 	}
-	erase(); /* When you return from the SELECT SLOT menu, */
+	erase();
+	mvprintw(23, 36, "INSTRUCTIONS");
+	mvprintw(24, 36, "press x to move the slider towards right.");
+	mvprintw(25, 36, "press z to move the slider towards left.");
+	mvprintw(26, 36, "press p to exit the game");
+	mvprintw(27, 36, "ENJOY");
+	refresh(); /* When you return from the SELECT SLOT menu, */
 	} /* everything will be erased and MAIN MENU will be */
 	while (menu_ret != 1); /* reprinted. */
 }

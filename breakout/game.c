@@ -6,8 +6,10 @@ void initgame(game *g) {
 	g->score = 0;
 	g->level = 1;
 	g->count_bricks = 27;
+	g->points = 0;
+	g->lives = 3;
 	getmaxyx(stdscr, g->row, g->column);
-	initball(g);
+	initball(g, 3);
 	initbrick(g);
 	initslider(g);
 	screenupdate(g);
@@ -15,23 +17,27 @@ void initgame(game *g) {
 
 //function to start the game.
 void startgame(game *g) {
-	char c, prevc = ERR;
-//	nodelay(stdscr, TRUE);
+	int c;
 	while(1) {	
 	c = getch();
+	keypad(stdscr, TRUE);
 	switch(c) {
-		case 'x':moveslider(g, 'x');
+		case KEY_RIGHT: moveslider(g, KEY_RIGHT);
 			break;
-		case 'z':moveslider(g, 'z');
+		case KEY_LEFT: moveslider(g, KEY_LEFT);
 			break;
-		case 'p':g->exit = 1;
+		case 'q': g->exit = 1;
 			break;
+		/*if(getch() == 'p')
+			getch();*/ 
 		default:break;
 	}
 	nodelay(stdscr, TRUE);
 	flushinp();
-	if(g->exit)
+	if(g->exit) {
+		//initmenu(g);
 		break;
+	}
 	moveball(g);
 	screenupdate(g);
 	}
@@ -43,8 +49,10 @@ void screenupdate(game *g) {
 	printball(g);
 	printslider(g);
 	printbrick(g);
+	printscore(g);
+	printlives(g);
 	refresh();
-	napms(100 / g->b->speed);
+	napms(60 / g->b->speed);
 }
 	
 	

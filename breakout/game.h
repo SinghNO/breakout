@@ -10,6 +10,8 @@ typedef struct game {
 	bricks *br;
 	slider *s;
 	int count_bricks;
+	int points;
+	int lives;
 	}game;
 
 void initgame(game *g);
