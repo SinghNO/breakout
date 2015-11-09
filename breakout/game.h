@@ -5,8 +5,8 @@ typedef struct bricks bricks;
 typedef struct slider slider;
 
 typedef struct game {
-	int exit, row, column, score,level;
-	ball *b;
+	int exit, row, column, score, level;
+	ball *b; 
 	bricks *br;
 	slider *s;
 	int count_bricks;

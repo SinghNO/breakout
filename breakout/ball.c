@@ -1,11 +1,11 @@
 #include"main.h"
 
-// function to initailize the ball.
+// function to initialize the ball.
 void initball(game *g, int age) {
 	g->b = (ball*)malloc(sizeof(ball));
 	ball *c;
 	c = g->b;
-	c-> x = g->column/2;
+	c-> x = g->column/2 - 5;
 	c-> y = g->row/2;
 	c-> state = 1;
 	c-> life = age;
@@ -17,7 +17,7 @@ void initball(game *g, int age) {
 // function to print the ball.
 
 void printball(game *g) {
-	mvprintw(g->b->y, g->b->x, "#");
+	mvprintw(g->b->y, g->b->x, "*");
 }
 
 //function to move the ball.
@@ -38,19 +38,32 @@ void moveball(game *g) {
 			}
 			g->s->x = g->column/2 - 5;
 			g->s->y = 3 * g->row / 4;
-			g->s->columns = 15; 
+			g->s->columns = 12; 
 			napms(1000);
-			
 			initball(g, g->lives);
 		}
 		if(t->y == 0 && t->direcy == -1) {
 			t->direcy *= -1;
 		}
 		if(t->y == g->s->y - 1 && t->direcy == 1) {
-			if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 15)
-				t->direcy *= -1;
-			if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 15)
-				t->direcy *= -1;
+			if(g->level == 1) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 15)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 15)
+					t->direcy *= -1;
+			}
+			if(g->level == 2) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 10)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 10)
+					t->direcy *= -1;
+			}
+			if(g->level == 3) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 8)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 8)
+					t->direcy *= -1;
+			}
 		}
 		k = brickindex(g);
 		if(k) 
@@ -62,10 +75,24 @@ void moveball(game *g) {
 			t->direcy *= -1;
 		}
 		if(t->y == g->s->y - 1 && t->direcy == 1) {
-			if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 15)
-				t->direcy *= -1;
-			if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 15)
-				t->direcy *= -1;
+			if(g->level == 1) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 15)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 15)
+					t->direcy *= -1;
+			}
+			if(g->level == 2) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 10)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 10)
+					t->direcy *= -1;
+			}
+			if(g->level == 3) {
+				if(t->direcx == -1 && t->x > g->s->x && t->x <= g->s->x + 5)
+					t->direcy *= -1;
+				if(t->direcx == 1 && t->x >= g->s->x && t->x < g->s->x + 5)
+					t->direcy *= -1;
+			}
 		}	
 		if((t->x == 136 && t->direcx == 1) || (t->x == 5 && t->direcx == -1)) {
 			t->direcx *= -1;

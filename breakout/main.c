@@ -1,50 +1,79 @@
 #include "main.h"
 int main() {
 	game g;
-	int menu_ret = 1, menu_ret2 = 1;
-	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"QUIT"}}; /* hold the entries. */
-	char alts2[][100] = {{"LEVEL 1"},{"LEVEL 2"},{"LEVEL 3"},{"RETURN BACK TO MAIN MENU"},};
+	int menu_ret = 1, menu_ret2 = 1, menu_ret3 = 1;
+	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"SAVE GAME"},{"RESUME GAME"}, {"QUIT"}}; /* hold the entries. */
+	char alts2[][100] = {{"EASY"},{"MEDIUM"},{"DIFFICULT"},{"RETURN BACK TO MAIN MENU"},};
+	char alts3[][100] = {{"GAME 1"}, {"GAME 2"}, {"GAME 3"}, {"RETURN BACK TO MAIN MENU"}};
 	setlocale (LC_CTYPE, "");
 	initscr(); 
 	noecho(); 
+	initcolor();
 	keypad (stdscr, TRUE); 
 	meta (stdscr, TRUE); 
 	nodelay (stdscr, FALSE); 
 	notimeout (stdscr, TRUE);
 	start_color();
-	//init_pair(1, COLOR_BLACK, COLOR_WHITE);
-	init_pair(1,COLOR_WHITE, COLOR_BLACK);
-	wbkgd(stdscr, COLOR_PAIR(1));
+	wbkgd(stdscr, COLOR_PAIR(WHITE_BLACK));
 	refresh();
 	raw();
 	curs_set (0);
 	mvprintw(23, 36, "INSTRUCTIONS");
 	mvprintw(24, 36, "press -> to move the slider towards right.");
 	mvprintw(25, 36, "press <- to move the slider towards left.");
-	mvprintw(26, 36, "press q to return to the menu.");
+	mvprintw(26, 36, "press 'q' to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
 	mvprintw(28, 36, "BE ALERT!!!");
+	//mvprintw(20, 36, " YOUR SCORE IS :%d ", g.points);
 	refresh();
 	do { /* menu_ret is sent as the start value, to make the last entry */
 		/* highlighted when you return to the main menu. */
-		menu_ret = print_menu (2, 5, 3, 15," WELCOME TO BREAKOUT  MAIN MENU", alts, menu_ret);
+		menu_ret = print_menu (2, 5, 5, 15," WELCOME TO BREAKOUT : MAIN MENU", alts, menu_ret);
 		if (menu_ret == 1) { 
+			napms(500);
 			initgame(&g);
 			startgame(&g);		
 		}
 		else if (menu_ret == 2) { /* menu will show up without erasing */
-			do  {/* the main menu. */
+			  /* the main menu. */
 				menu_ret2 = print_menu (6, 22, 4, 15," PLEASE SELECT THE LEVEL", alts2, 1);
-		}	
-		while (menu_ret2 != 4);
-		mvprintw(23, 36, "INSTRUCTIONS");
-		mvprintw(24, 36, "press -> to move the slider towards right.");
-		mvprintw(25, 36, "press <- to move the slider towards left.");
-		mvprintw(26, 36, "press q to return to the menu.");
-		mvprintw(27, 36, "ENJOY!!!");
-		mvprintw(28, 36, "BE ALERT!!!");
-		refresh();
-	}
+				/* description of various levels */
+				if(menu_ret2 == 1) {
+					initgame(&g);
+					g.level = 1;	
+					g.s->columns = 15;
+					startgame(&g);
+				}
+				else if(menu_ret2 == 2) {
+					initgame(&g);
+					g.level = 2;
+					g.s->columns = 10;
+					startgame(&g);
+				}
+				else if(menu_ret2 == 3) {
+					initgame(&g);
+					g.level = 3;
+					g.s->columns = 5;
+					startgame(&g);
+				}
+				
+	//	while ((menu_ret2 != 4));
+		}
+		else if(menu_ret == 3) {
+			do {
+				menu_ret3 = print_menu(6, 22, 4, 15, "SAVE GAME", alts3, 1);
+			}
+		
+		while(menu_ret3 != 4);
+		}
+	mvprintw(23, 36, "INSTRUCTIONS");
+	mvprintw(24, 36, "press -> to move the slider towards right.");
+	mvprintw(25, 36, "press <- to move the slider towards left.");
+	mvprintw(26, 36, "press q to return to the menu.");
+	mvprintw(27, 36, "ENJOY!!!");
+	mvprintw(28, 36, "BE ALERT!!!");
+	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
+	refresh();
 	erase();
 	mvprintw(23, 36, "INSTRUCTIONS");
 	mvprintw(24, 36, "press -> to move the slider towards right.");
@@ -52,11 +81,11 @@ int main() {
 	mvprintw(26, 36, "press q to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
 	mvprintw(28, 36, "BE ALERT!!!");
-	
+	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
 	refresh();
 	 /* When you return from the SELECT SLOT menu, */
 	} /* everything will be erased and MAIN MENU will be */
-	while (menu_ret != 3); /* reprinted. */
+	while (menu_ret != 5); /* reprinted. */
 	//game new;
 	//initmenu(&new);
 	endwin();

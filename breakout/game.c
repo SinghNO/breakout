@@ -52,8 +52,15 @@ void screenupdate(game *g) {
 	printscore(g);
 	printlives(g);
 	refresh();
-	napms(60 / g->b->speed);
-}
-	
+	if(g->level == 1) {
+		napms(70 / g->b->speed);
+	}
+	if(g->level == 2) {
+		napms(55 / g->b->speed);
+	}
+	if(g->level == 3) {
+		napms(40 / g->b->speed);
+	}
+} 
 	
 
