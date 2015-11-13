@@ -99,6 +99,6 @@ void savegame(game *g) {
 		fprintf(fp, "%d %d %d %d %d %d", g->br[i].x, g->br[i].y, g->br[i].life, g->br[i].state, g->br[i].width, g->br[i].color);	
 	}
 	fclose(fp);
-	//insertl(&g->game, 1, name);
+	insertl(&g->game, 1, name);
 }
 

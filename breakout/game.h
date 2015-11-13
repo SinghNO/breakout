@@ -25,4 +25,4 @@ void startgame(game *g);
 void screenupdate(game *g);
 void loadgame(game *g, char *name);
 void savegame(game *g);
-void insertl(list *l, int i, char *name);
+//void insertl(list *l, int i, char *name);

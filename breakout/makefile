@@ -1,5 +1,5 @@
-project: main.o game.o ball.o bricks.o slider.o color.o 
-	cc -Wall main.o game.o ball.o bricks.o slider.o color.o -o project -lncurses 
+project: main.o game.o ball.o bricks.o slider.o color.o list.o
+	cc -Wall main.o game.o ball.o bricks.o slider.o color.o list.o -o project -lncurses 
 main.o: main.c main.h
 	cc -c -Wall main.c -lncurses
 game.o: game.c main.h

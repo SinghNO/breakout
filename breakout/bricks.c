@@ -13,7 +13,7 @@ void initbrick(game *g) {
                 g->br[i].state =1;
 		g->br[i].width = g->column / 10 + 1;
                 x = x + g->column / 10 + 1 ;
-                if(x > 134) {
+                if(x > g->column - 10) {
                         x = 4;
                         y = y + 3;
                 }

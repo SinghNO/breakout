@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 void readlist(list *l) {
 	int count;
 	FILE *fp;
