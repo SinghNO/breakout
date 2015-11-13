@@ -74,7 +74,7 @@ int brickindex(game *g) {
 		xcor = g->br[k].x;
 		ycor = g->br[k].y;
 		if(next_xcor >= xcor&& next_xcor <= xcor + 14) {
-			if(next_ycor >= ycor && next_ycor <= ycor + 3) {
+			if(next_ycor >= ycor && next_ycor <= ycor + 4) {
 				destroybrick(g, k);
 				return 1;
 				break;
@@ -110,15 +110,28 @@ void destroybrick(game *g, int k) {
 	if(g->br[k].state == 2) {
 		g->b->speed *= 1.5;
 	}
-	/*if(count == k) {
-		g->exit = 1;
-	}*/
+
 }	
 int printscore(game *g) {
 	mvaddstr(38, 0, "score :");
 	refresh();
 	mvprintw(38, 10, "%d ", g->points);
 	refresh();
+	if(g->level == 1 && g->points == 135) {
+		mvprintw(21, 64, "CONGRATULATIONS WELCOME TO NEXT LEVEL");
+		refresh();
+		napms(3000);
+		g->level = 2;
+		startgame(g);
+		g->exit = 1;
+	}
+	else if(g->level == 2 && g->points == 270) {
+		g->exit = 1;
+	}
+	else if(g->level == 3 && g->points == 405) {
+		g->exit = 1;
+	}
+	
 	return 0;
 	}
 int printlives(game *g) {
@@ -126,11 +139,16 @@ int printlives(game *g) {
 	refresh();
 	mvprintw(38, 141, "%d ", g->lives);
 	refresh();
-	/*if(g->lives == 0)
-		clear();
-		initscr();
-		mvprintw(36, 64, "GAME OVER");
+	if(g->lives == 0) {
+	
+		mvprintw(21, 64, "GAME OVER");
 		refresh();
-	*/
+		napms(3000);		//usleep(5000);
+		g->exit = 1;
+	}
+		//napms(5000);
+		//usleep(2000);	
 	return 0;
 	}
+
+	

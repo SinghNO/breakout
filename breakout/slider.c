@@ -12,7 +12,7 @@ void initslider(game *g) {
 		g->s->columns = 10;
 	}
 	else if(g->level == 3) {
-		g->s->columns = 8;
+		g->s->columns = 10;
 	}
 }
 
@@ -25,7 +25,7 @@ void printslider(game *g) {
 		mvprintw(g->s->y, g->s->x, "**********");
 	}
 	else if(g->level == 3) {
-		mvprintw(g->s->y, g->s->x, "********");
+		mvprintw(g->s->y, g->s->x, "**********");
 	}
 }
 
@@ -43,5 +43,13 @@ void moveslider(game *g ,int ch) {
 		default:
 			break;
 	}
+}
+void readslider(game *g, FILE *fp) {
+	slider *t = g->s;
+	fscanf(fp, "%d %d %d %d", &t->x, &t->y, &t->columns, &t->speed);
+}
+void writeslider(game *g, FILE *fp) {
+	slider *t = g->s;
+	fprintf(fp, "%d %d %d %d", t->x, t->y, t->columns, t->speed);
 }
 

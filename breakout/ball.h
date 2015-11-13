@@ -6,4 +6,7 @@ void initball(game *g, int age);
 void printball(game *g);
 void moveball(game *g);
 //int getbrickindex(game *g);
+void readball(game *g, FILE *fp);
+void writeball(game *g, FILE *fp);
+
 

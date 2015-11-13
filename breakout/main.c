@@ -1,10 +1,11 @@
 #include "main.h"
 int main() {
 	game g;
+	char *name;
 	int menu_ret = 1, menu_ret2 = 1, menu_ret3 = 1;
-	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"SAVE GAME"},{"RESUME GAME"}, {"QUIT"}}; /* hold the entries. */
+	char alts[][100] = { {"NEW GAME"},{"LEVELS"},{"SAVE GAME"}, {"LOAD GAME"}, {"QUIT"}}; /* hold the entries. */
 	char alts2[][100] = {{"EASY"},{"MEDIUM"},{"DIFFICULT"},{"RETURN BACK TO MAIN MENU"},};
-	char alts3[][100] = {{"GAME 1"}, {"GAME 2"}, {"GAME 3"}, {"RETURN BACK TO MAIN MENU"}};
+	//char alts3[][100] = {{"A"}, {"B"}, {"C"}, {"RETURN BACK TO MAIN MENU"}};
 	setlocale (LC_CTYPE, "");
 	initscr(); 
 	noecho(); 
@@ -23,7 +24,7 @@ int main() {
 	mvprintw(25, 36, "press <- to move the slider towards left.");
 	mvprintw(26, 36, "press 'q' to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
-	mvprintw(28, 36, "BE ALERT!!!");
+	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
 	//mvprintw(20, 36, " YOUR SCORE IS :%d ", g.points);
 	refresh();
 	do { /* menu_ret is sent as the start value, to make the last entry */
@@ -41,37 +42,41 @@ int main() {
 				if(menu_ret2 == 1) {
 					initgame(&g);
 					g.level = 1;	
-					g.s->columns = 15;
+			//		g.s->columns = 15;
 					startgame(&g);
 				}
 				else if(menu_ret2 == 2) {
 					initgame(&g);
 					g.level = 2;
-					g.s->columns = 10;
+			//		g.s->columns = 10;
 					startgame(&g);
 				}
 				else if(menu_ret2 == 3) {
 					initgame(&g);
 					g.level = 3;
-					g.s->columns = 5;
+			//		g.s->columns = 5;
 					startgame(&g);
 				}
 				
 	//	while ((menu_ret2 != 4));
 		}
-		else if(menu_ret == 3) {
-			do {
-				menu_ret3 = print_menu(6, 22, 4, 15, "SAVE GAME", alts3, 1);
-			}
-		
-		while(menu_ret3 != 4);
+		else if(menu_ret == 3) {	
+			//menu_ret3 = print_menu(6, 22, 4, 15, "SAVE GAME", alts3, 1);
+			savegame(&g);
+		}
+		else if(menu_ret == 4) {
+			//menu_ret3 = print_menu(6, 22, 4, 15, "LOAD GAME", alts3, 1);
+			//initgame(&g);
+			loadgame(&g, "nikunj");
+			startgame(&g);
+			napms(300);
 		}
 	mvprintw(23, 36, "INSTRUCTIONS");
 	mvprintw(24, 36, "press -> to move the slider towards right.");
 	mvprintw(25, 36, "press <- to move the slider towards left.");
 	mvprintw(26, 36, "press q to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
-	mvprintw(28, 36, "BE ALERT!!!");
+	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
 	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
 	refresh();
 	erase();
@@ -80,13 +85,13 @@ int main() {
 	mvprintw(25, 36, "press <- to move the slider towards left.");
 	mvprintw(26, 36, "press q to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
-	mvprintw(28, 36, "BE ALERT!!!");
+	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
 	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
 	refresh();
 	 /* When you return from the SELECT SLOT menu, */
 	} /* everything will be erased and MAIN MENU will be */
 	while (menu_ret != 5); /* reprinted. */
-	//game new;
+	//game new
 	//initmenu(&new);
 	endwin();
 	/*initscr();
@@ -99,21 +104,21 @@ int main() {
 	return 0;
 }
 int print_menu (int sty, int x, int alts, int width,char title[], char entries[][100], int start) {
-/* "i" will be used for printing out a character several times
-in a row by using for-loops. Later it will also be used
-to point to elements in "temparray" in order to assign some
-spaces after the currently selected word, so that the
-entire menu cell will be highlighted. */
-/* "j" will be used once by a for-loop when "i" is used elsewhere. */
-/* "k" is used to point to the different "entries" strings. */
-/* "blankspace1" and 2 are used for formatting the strings
-in the menu cells. */
-/* "currow" contains the currently highlighted row in the menu. */
-/* "y" will be used to move the cursor in the y-axis. */
-/* "key" will hold the keycode of the last key you pressed,
-in order to later compare it for different actions. */
-/* "temparray" will as previously stated contain the currently
-selected word in order to highlight it. */
+	/* "i" will be used for printing out a character several times
+	in a row by using for-loops. Later it will also be used
+	to point to elements in "temparray" in order to assign some
+	spaces after the currently selected word, so that the
+	entire menu cell will be highlighted. */
+	/* "j" will be used once by a for-loop when "i" is used elsewhere. */
+	/* "k" is used to point to the different "entries" strings. */
+	/* "blankspace1" and 2 are used for formatting the strings
+	in the menu cells. */
+	/* "currow" contains the currently highlighted row in the menu. */
+	/* "y" will be used to move the cursor in the y-axis. */
+	/* "key" will hold the keycode of the last key you pressed,
+	in order to later compare it for different actions. */
+	/* "temparray" will as previously stated contain the currently
+	selected word in order to highlight it. */
 	int i, j, k, blankspace1, blankspace2, currow = start, y = sty, key;
 	char temparray[100];
 	if (n_chars (title) + 2 > width) /* "width" cannot be less than */
@@ -236,6 +241,7 @@ int n_chars (char *str) {
 }
 
 	/* Copies string "src" to string "dest" */
+
 void str_cp (char *dest, char *src) {
 	int i = 0;
 	do { /* element of src is */

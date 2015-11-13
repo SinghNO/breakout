@@ -12,4 +12,5 @@ slider.o: slider.c main.h
 	cc -c -Wall slider.c -lncurses
 color.o : color.c main.h
 	cc -c -Wall color.c -lncurses
-
+list.o : list.c main.h
+	cc -c -Wall list.c -lncurses
