@@ -1,3 +1,18 @@
+/*  All functions related to bricks are stated here.
+   Copyright (C) 2015  NIKUNJ SINGH
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA   */
 #include"main.h"
 
 //function to initialize the bricks.
@@ -131,7 +146,7 @@ int printscore(game *g) {
 	}
 	
 	return 0;
-	}
+}
 int printlives(game *g) {
 	mvaddstr(38, 135, "lives:");
 	refresh();
@@ -141,12 +156,10 @@ int printlives(game *g) {
 	
 		mvprintw(21, 64, "GAME OVER");
 		refresh();
-		napms(3000);		//usleep(5000);
+		napms(3000);	
 		g->exit = 1;
 	}
-		//napms(5000);
-		//usleep(2000);	
 	return 0;
-	}
+}
 
 	

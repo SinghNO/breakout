@@ -1,12 +1,26 @@
+/* The main function for the game.
+   Copyright (C) 2015  NIKUNJ SINGH
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA   */
 #include "main.h"
 int main() {
 	game g;
-	int ch;
 	char *name = (char *)malloc(24);
-	int menu_ret = 1, menu_ret2 = 1, menu_ret3 = 1;
-	char alts[][100] = { {"NEW GAME"},{"LEVELS"}, {"LOAD GAME"}, {"QUIT"}}; /* hold the entries. */
+	strcpy(name, "nikunj");
+	int menu_ret = 1, menu_ret2 = 1;
+	char alts[][100] = { {"NEW GAME"},{"LEVELS"}, {"LOAD GAME THE SAVED GAME."}, {"QUIT"}}; /* hold the entries. */
 	char alts2[][100] = {{"EASY"},{"MEDIUM"},{"DIFFICULT"},{"RETURN BACK TO MAIN MENU"},};
-	//char alts3[][100] = {{"A"}, {"B"}, {"C"}, {"RETURN BACK TO MAIN MENU"}};
 	setlocale (LC_CTYPE, "");
 	initscr(); 
 	noecho(); 
@@ -26,10 +40,9 @@ int main() {
 	mvprintw(26, 36, "press 'q' to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
 	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
-	//mvprintw(20, 36, " YOUR SCORE IS :%d ", g.points);
+	mvprintw(29, 36, "YOU CAN SAVE THE GAME BY PRESSING s");
 	refresh();
-	do { /* menu_ret is sent as the start value, to make the last entry */
-		/* highlighted when you return to the main menu. */
+	do { 
 		menu_ret = print_menu (2, 5, 4, 15," WELCOME TO BREAKOUT : MAIN MENU", alts, menu_ret);
 		if (menu_ret == 1) { 
 			napms(500);
@@ -43,32 +56,24 @@ int main() {
 				if(menu_ret2 == 1) {
 					initgame(&g);
 					g.level = 1;	
-			//		g.s->columns = 15;
 					startgame(&g);
 				}
 				else if(menu_ret2 == 2) {
 					initgame(&g);
 					g.level = 2;
-			//		g.s->columns = 10;
 					startgame(&g);
 				}
 				else if(menu_ret2 == 3) {
 					initgame(&g);
 					g.level = 3;
-			//		g.s->columns = 5;
 					startgame(&g);
 				}
-				
-	//	while ((menu_ret2 != 4));
 		}
-	//	else if(menu_ret == 3) {	
-	//		//menu_ret3 = print_menu(6, 22, 4, 15, "SAVE GAME", alts3, 1);
-	//		savegame(&g);
-	//	}
 		else if(menu_ret == 3) {
-			loadgame(&g, name);
-			screenupdate(&g);
-			napms(500);
+				loadgame(&g, name);
+				screenupdate(&g);
+				g.exit = 0;
+				startgame(&g);
 		}
 	mvprintw(23, 36, "INSTRUCTIONS");
 	mvprintw(24, 36, "press -> to move the slider towards right.");
@@ -76,6 +81,7 @@ int main() {
 	mvprintw(26, 36, "press q to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
 	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
+	mvprintw(29, 36, "YOU CAN SAVE THE GAME BY PRESSING s");
 	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
 	refresh();
 	erase();
@@ -85,21 +91,13 @@ int main() {
 	mvprintw(26, 36, "press q to return to the menu.");
 	mvprintw(27, 36, "ENJOY!!!");
 	mvprintw(28, 36, "BE ALERT!!! AND NO PAUSE IS ALLOWED.");
+	mvprintw(29, 36, "YOU CAN SAVE THE GAME BY PRESSING s");
 	mvprintw(20, 36, "YOUR SCORE IS :%d ", g.points);	
 	refresh();
 	 /* When you return from the SELECT SLOT menu, */
 	} /* everything will be erased and MAIN MENU will be */
 	while (menu_ret != 4); /* reprinted. */
-	//game new
-	//initmenu(&new);
 	endwin();
-	/*initscr();
-	noecho();
-	curs_set(FALSE);
-	*/	
-	/*initgame(&new);
-	startgame(&new);
-	endwin();*/
 	return 0;
 }
 int print_menu (int sty, int x, int alts, int width,char title[], char entries[][100], int start) {
