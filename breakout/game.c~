@@ -70,7 +70,7 @@ void screenupdate(game *g) {
 void loadgame(game *g, char *name) {
 	FILE *fp;
 	int i;
-	fp = fopen(name, "r");
+	fp = fopen("nikunj", "r");
 	fscanf(fp, "%d %d %d %d %d %d %d %d", &g->row, &g->column, &g->score, &g->exit, &g->level, &g->count_bricks, &g->lives, &g->points);	
 	readball(g, fp);	 
 	readslider(g, fp);

@@ -118,15 +118,19 @@ int printscore(game *g) {
 	mvprintw(38, 10, "%d ", g->points);
 	refresh();
 	if(g->level == 1 && g->points == 135) {
-		mvprintw(21, 64, "CONGRATULATIONS ");
+		mvprintw(21, 64, "CONGRATULATIONS WELCOME TO NEXT LEVEL");
+		refresh();
+		napms(3000);
+		g->level = 2;
+		startgame(g);
+		printbrick(g);
+		refresh();
 		g->exit = 1;
 	}
 	else if(g->level == 2 && g->points == 270) {
-		mvprintw(21, 64, "CONGRATULATIONS ");
 		g->exit = 1;
 	}
 	else if(g->level == 3 && g->points == 405) {
-		mvprintw(21, 64, "CONGRATULATIONS ");
 		g->exit = 1;
 	}
 	

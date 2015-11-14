@@ -105,6 +105,7 @@ void readball(game *g, FILE *fp) {
 	ball *t = g->b;
 	fscanf(fp, "%d %d %d %d %d %d", &t->x, &t->y, &t->life, &t->state, &t->direcx, &t->direcy);
 }
+
 void writeball(game *g, FILE *fp) {
 	ball *t = g->b;
 	fprintf(fp, "%d %d %d %d %d %d", t->x, t->y, t->life, t->state, t->direcx, t->direcy);

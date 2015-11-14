@@ -2,6 +2,7 @@
 int main() {
 	game g;
 	int ch;
+	char *name;
 	char *name = (char *)malloc(24);
 	int menu_ret = 1, menu_ret2 = 1, menu_ret3 = 1;
 	char alts[][100] = { {"NEW GAME"},{"LEVELS"}, {"LOAD GAME"}, {"QUIT"}}; /* hold the entries. */
