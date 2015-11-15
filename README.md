@@ -1,5 +1,7 @@
 #breakout
-#an interesting game.
+# NIKUNJ SINGH
+# 111403076
+an interesting game.
 the game works in maximized form of your screen.
 The game has three levels: easy, medium, difficult.
 The game also has the save game and load game feature.
