@@ -24,6 +24,7 @@ typedef struct record {
 	int v[1024];
 	}record;
 record r;
+
 typedef struct recordball {
 	int a, b, c, d, e, f;
 	}rball;
@@ -33,6 +34,7 @@ typedef struct recordslider {
 	int a, b, c, d;
 	}rslider;
 rslider rs;
+
 //function to initialize the game.
 void initgame(game *g) {
 	g->exit = 0;
