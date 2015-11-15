@@ -14,7 +14,7 @@ There is variation in the score according to the level.
 There are 5 points for each brick in level one.
 There are 10 points for each brick in level two.
 There are 15 points for each brick in level three.
-The special feature of the games the "automatic saving" of the game even if you forget to save the game.
+# The special feature of the game is that ONCE you save the game the game will operate in auto save mode.
 Now coming to the making part of the game.
 The game has different structures forthe ball, the slider, the bricks, the game itself.
 The ball has x, y, speed, life, state, direcx, direcy as the components in its data structure.
